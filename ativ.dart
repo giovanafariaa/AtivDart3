@@ -5,6 +5,7 @@ import 'package:ativ/ativ.dart' as ativ;
 void main(List<String> arguments) {
    void enter() {
     stdin.readLineSync();
+    Empresa emp = Empresa();
 }
 
   print('Seja bem vindo ao sistema Funcionarios');
@@ -27,7 +28,7 @@ void main(List<String> arguments) {
       bool sair = false;
       while (!sair) {
         print(
-            'Oque você deseja fazer? \n 1-Depositar \n 2-Exibir info \n 3-Sair');
+            'Oque você deseja fazer? \n 1-Depositar \n 2-Exibir info \n 3-Sair \n 4-Adicionar funcionario \n 5-Remover funcionario');
         String? escolha = stdin.readLineSync();
         switch (escolha) {
           case "1":
@@ -58,13 +59,24 @@ void main(List<String> arguments) {
 
 
 class Funcionarios{
-  late int id;
- late String nome;
- late String cargo;
- late double _salario;
+  late final int _id;
+ late final String _nome;
+ late final String _cargo;
+ late final double _salario;
 
 
   get getSalario => _salario;
+  get getNome => _nome;
+  get getId => _id;
+  get getCarg0 => _cargo;
+
+set  setNome (String nome) {
+_nome = nome; 
+}  
+set  setCargo (String cargo) { 
+_cargo = cargo; 
+}
+
 
   set setSalario(double novoSalario) {
     _salario = novoSalario;
@@ -76,7 +88,7 @@ class Funcionarios{
 
 
   void exibirInformacoes() {
-    print('Nome do Funcionario: $nome \nSalario Atual: $getSalario');
+    print('Nome do Funcionario: $getNome \nCargo:$getCarg0 \nSalario Atual: $getSalario');
   }
 
 }
@@ -85,8 +97,22 @@ class Empresa{
   late int id;
   late String funcionario;
 
+List<String> lista = <String>[];
+String? nome;
 
-get getFuncio => funcionario;
-
-
+void adicionarFuncionario() {
+ Funcionarios f = Funcionarios();
+ print('Nome do funcionario:');
+String? name = stdin.readLineSync()?.toUpperCase() ?? "";
+f.setNome = name;
+lista.add(name);
+print( 'Usuario adicionado com o id: ${lista.length - 1}');
+print( 'Cargo do funcionario');
+String? _cargo = stdin.readLineSync() ?? "";
+f.setCargo = _cargo;
+print('Adicione o salario:');
+String? _salario = stdin.readLineSync() ?? "";
+f.setSalario = _salario;
 }
+}
+
